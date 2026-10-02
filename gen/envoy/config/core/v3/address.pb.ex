@@ -21,3 +21,37 @@ defmodule Envoy.Config.Core.V3.SocketAddress do
   field :resolver_name, 5, type: :string, json_name: "resolverName"
   field :ipv4_compat, 6, type: :bool, json_name: "ipv4Compat"
 end
+
+defmodule Envoy.Config.Core.V3.Address do
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  oneof :address, 0
+
+  field :socket_address, 1,
+    type: Envoy.Config.Core.V3.SocketAddress,
+    json_name: "socketAddress",
+    oneof: 0
+
+  field :pipe, 2, type: Envoy.Config.Core.V3.Pipe, oneof: 0
+
+  field :envoy_internal_address, 3,
+    type: Envoy.Config.Core.V3.EnvoyInternalAddress,
+    json_name: "envoyInternalAddress",
+    oneof: 0
+end
+
+defmodule Envoy.Config.Core.V3.Pipe do
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  field :path, 1, type: :string, deprecated: false
+  field :mode, 2, type: :uint32, deprecated: false
+end
+
+defmodule Envoy.Config.Core.V3.EnvoyInternalAddress do
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  oneof :address_name_specifier, 0
+
+  field :server_listener_name, 1, type: :string, json_name: "serverListenerName", oneof: 0
+  field :endpoint_id, 2, type: :string, json_name: "endpointId"
+end
