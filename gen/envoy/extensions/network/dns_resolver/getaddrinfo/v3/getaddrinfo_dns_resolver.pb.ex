@@ -1,3 +1,0 @@
-defmodule Envoy.Extensions.Network.DnsResolver.Getaddrinfo.V3.GetAddrInfoDnsResolverConfig do
-  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
-end

@@ -26,7 +26,6 @@ defmodule EnvoyDataPlaneApi.MixProject do
     [
       {:protobuf, "~> 0.12"},
       {:grpc, "~> 1.0"},
-      {:google_protos, "~> 0.4"},
       {:ex_doc, "~> 0.31", only: :dev, runtime: false}
     ]
   end
